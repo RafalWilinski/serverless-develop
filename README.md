@@ -19,6 +19,10 @@ This plugin, instead of running Lambdas offline, deploys your code to AWS Lambda
 
 To be added...
 
+
+## How does it work?
+First, plugin builds individual artifacts, one for each function. Then, once a change is made, plugin checks which functions are affected. Then it patches archives located in `.serverless` directory and re-deploys them to AWS Lambda without updating CloudFormation or performing checks.
+
 ## Credits and inspiration
 
 Heavily inspired by [@keithwhor's](https://github.com/keithwhor) [article](https://medium.com/@keithwhor/rise-of-functions-as-a-service-how-php-set-the-serverless-stage-20-years-ago-ccb560c5f422) and [@mthenw thoughts](https://github.com/mthenw).
