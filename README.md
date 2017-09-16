@@ -6,7 +6,7 @@ Deploy your functions to AWS Lambda as you code and get realtime feedback.
 ## What is this?
 Right now, unpolished PoC.
 
-## What problem does it solves?
+## What problem does it solve?
 Iterating with Serverless Framework is slow.
 
 Plugins like [serverless-offline](https://github.com/dherault/serverless-offline) or [emulator](https://github.com/serverless/emulator) try to solve that problem by Emulating AWS Lambda environment locally. That solution is far from perfect because of different container, different environment, different IAM roles etc. etc. - Inconsistency.
