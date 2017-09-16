@@ -6,6 +6,7 @@
   "author": "Rafal Wilinski <raf.wilinski@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "madge": "^2.2.0",
     "nodemon": "^1.12.1"
   }
 }
