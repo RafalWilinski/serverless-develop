@@ -4,6 +4,5 @@ Project consists of two endpoints/functions. One of them depends on module `serv
 
 ## Setup
 `serverless deploy` - to perform initial deployment
+
 `serverless develop` - to incrementally update your deployed code
-
-

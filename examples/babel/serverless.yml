@@ -1,0 +1,28 @@
+service: serverless-develop-babel-example
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+
+custom:
+  develop:
+    middleware:
+      - npm run build
+    buildPath: build
+    sourcePath: src
+    verbose: true
+
+plugins:
+  - /Users/Rafal/Node/serverless-develop/index # Change to your absolute dir :P
+
+package:
+  exclude:
+    - ./**
+  include:
+    - ./build/**
+
+functions:
+  hello:
+    handler: build/src/handler.hello
+    events:
+      - http: GET /hello

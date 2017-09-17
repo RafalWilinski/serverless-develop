@@ -1,12 +1,12 @@
 {
   "name": "serverless-develop",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Deploy your functions to AWS Lambda as you code.",
   "main": "index.js",
   "author": "Rafal Wilinski <raf.wilinski@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "madge": "^2.2.0",
-    "nodemon": "^1.12.1"
+    "watch": "^1.0.2"
   }
 }

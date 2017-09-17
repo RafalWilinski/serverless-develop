@@ -1,7 +1,7 @@
 service: serverless-develop-basic-demo
 
 plugins:
-  - ../../index # serverless-develop
+  - /Users/Rafal/Node/serverless-develop/index # Change to your absolute dir :P
 
 provider:
   name: aws

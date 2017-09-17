@@ -1,0 +1,17 @@
+{
+  "name": "serverless-develop-example-babel",
+  "version": "1.0.0",
+  "main": "src/handler.js",
+  "description": "Serverless-develop Babel Example",
+  "author": "Rafal Wilinski <raf.wilinski@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "find ./src -name '*.js' -exec ./node_modules/.bin/babel {} -d build --ignore build \\;"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2017": "^6.24.1",
+    "serverless-develop": "0.0.2"
+  },
+  "dependencies": {}
+}

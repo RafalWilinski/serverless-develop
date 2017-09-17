@@ -25,11 +25,27 @@ plugins:
 ```
 3. Run `serverless develop`
 
+#### Configuration
+
+`serverless-develop` can be configured by changing following variables in `serverless.yml` file.
+
+
+```yml
+custom:
+  develop:
+    middleware:
+      - npm run build   # Runs `npm run build` before packaging
+    buildPath: build    # Packages files from `build` directory
+    sourcePath: src     # Points to source files directory
+    changeInterval: 0.2 # Specifies max amount of seconds between deployments
+```
+
 ## How does it work?
 First, plugin builds individual artifacts, one for each function. Then, once a change is applied, plugin checks which functions are affected. Then it patches archives located in `.serverless` directory and re-deploys them to AWS Lambda without updating CloudFormation or performing checks.
 
 ## Examples:
-[Here.](https://github.com/RafalWilinski/serverless-develop/tree/master/examples/basic)
+- [Basic](https://github.com/RafalWilinski/serverless-develop/tree/master/examples/basic)
+- [With Babel build pipeline](https://github.com/RafalWilinski/serverless-develop/tree/master/examples/babel)
 
 ## Credits and inspiration
 
