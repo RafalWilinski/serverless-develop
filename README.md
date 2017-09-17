@@ -13,7 +13,7 @@ Plugins like [serverless-offline](https://github.com/dherault/serverless-offline
 
 This plugin, instead of running Lambdas offline, deploys your code to AWS Lambda as you type, in realtime. Welcome back to 2000's, where PHP FTP deployments were made every time `CMD+S` was hit.
 
-![Demo](https://im4.ezgif.com/tmp/ezgif-4-19953af310.gif)
+![Demo](/resources/anim.gif)
 
 ## Installation
 
