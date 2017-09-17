@@ -5,7 +5,7 @@ module.exports.hello = (event, context, callback) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: waitService.message,
+      message: "Very important message!!!!!!!!!!",
       input: event
     })
   };

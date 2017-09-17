@@ -178,7 +178,7 @@ class ServerlessPlugin {
       this.serverless.service.custom.develop.middleware.forEach(cmd => {
         const spinner = ora(`Running ${cmd}...`).start();
         const execSyncResult = execSync(cmd);
-        spinner.succeed(`${cmd} finished!`);
+        spinner.succeed(`Middleware '${cmd}' finished!`);
 
         if (this.verbose) {
           this.serverless.cli.log(execSyncResult);
