@@ -17,8 +17,13 @@ This plugin, instead of running Lambdas offline, deploys your code to AWS Lambda
 
 ## Installation
 
-To be added...
-
+1. Run `npm install serverless-develop --save`
+2. Add `serverless-develop` to your `serverless.yml` `plugins` section:
+```yml
+plugins:
+  - serverless-develop
+```
+3. Run `serverless develop`
 
 ## How does it work?
 First, plugin builds individual artifacts, one for each function. Then, once a change is made, plugin checks which functions are affected. Then it patches archives located in `.serverless` directory and re-deploys them to AWS Lambda without updating CloudFormation or performing checks.
