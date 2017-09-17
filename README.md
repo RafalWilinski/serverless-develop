@@ -26,7 +26,10 @@ plugins:
 3. Run `serverless develop`
 
 ## How does it work?
-First, plugin builds individual artifacts, one for each function. Then, once a change is made, plugin checks which functions are affected. Then it patches archives located in `.serverless` directory and re-deploys them to AWS Lambda without updating CloudFormation or performing checks.
+First, plugin builds individual artifacts, one for each function. Then, once a change is applied, plugin checks which functions are affected. Then it patches archives located in `.serverless` directory and re-deploys them to AWS Lambda without updating CloudFormation or performing checks.
+
+## Examples:
+[Here.](https://github.com/RafalWilinski/serverless-develop/tree/master/examples/basic)
 
 ## Credits and inspiration
 
