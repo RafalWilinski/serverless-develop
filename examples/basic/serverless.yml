@@ -1,7 +1,7 @@
 service: serverless-develop-basic-demo
 
 plugins:
-  - ../../index # serverless-develop
+  - serverless-develop
 
 provider:
   name: aws
