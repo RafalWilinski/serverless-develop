@@ -1,11 +1,11 @@
 "use strict";
-const nodemon = require("nodemon");
 const watch = require("watch");
 const path = require("path");
 const fs = require("fs");
 const madge = require("madge");
 const spawn = require("child_process").spawn;
 const execSync = require("child_process").execSync;
+const ora = require("ora");
 
 class ServerlessPlugin {
   constructor(serverless, options) {
@@ -25,9 +25,11 @@ class ServerlessPlugin {
       this.changeInterval = this.serverless.service.custom.develop.changeInterval || 0.1;
       this.verbose = this.serverless.service.custom.develop.verbose;
 
-      this.serverless.cli.log("------------------------");
-      this.serverless.cli.log("Running in verbose mode!");
-      this.serverless.cli.log("------------------------");
+      if (this.verbose) {
+        this.serverless.cli.log("------------------------");
+        this.serverless.cli.log("Running in verbose mode!");
+        this.serverless.cli.log("------------------------");
+      }
     }
 
     this.excludePaths = ["node_modules"];
@@ -54,18 +56,24 @@ class ServerlessPlugin {
     const progress = index / functionsCount * 100;
     const functionName = functions[index];
 
+    this.initialPackagingSpinner = ora(
+      "Building initial artifacts, this might take a while."
+    ).start();
+
     if (index === 0) {
-      this.serverless.cli.log("Building initial packages, this might take a while.");
       this.getBaseEndpoint();
     }
 
     this.originalOptions.function = functionName;
-    this.serverless.cli.log(`[${progress}%] Preparing serverless-develop...`);
+    if (this.verbose) {
+      this.serverless.cli.log(`[${progress}%] Preparing serverless-develop...`);
+    }
 
     return this.serverless.pluginManager.spawn("package:function").then(() => {
       if (index + 1 < functionsCount) {
         return this.packageFunction(index + 1);
       } else {
+        this.initialPackagingSpinner.succeed("Artifacts built!");
         return Promise.resolve();
       }
     });
@@ -125,7 +133,7 @@ class ServerlessPlugin {
 
   deployFunction(functionName, artifactPath) {
     const FunctionName = `${this.serverless.service.service}-dev-${functionName}`;
-    this.serverless.cli.log(`Deploying ${functionName}...`);
+    const deploySpinner = ora(`Deploying ${FunctionName}...`).start();
 
     return this.provider
       .request(
@@ -139,16 +147,14 @@ class ServerlessPlugin {
         this.options.region
       )
       .then(() => {
-        this.serverless.cli.log(`Successfully deployed function: ${functionName}`);
+        deploySpinner.succeed(`Function ${FunctionName} deployed!`);
         this.printFunctionEndpoint(functionName);
       });
   }
 
   packageFunctionIncrementally(functionName, changedFile) {
     const zipFileName = `.serverless/${functionName}.zip`;
-
-    this.serverless.cli.log(`Packaging ${functionName}...`);
-
+    const spinner = ora(`Packaging ${functionName}...`).start();
     const zipOperation = spawn("zip", [zipFileName, changedFile]);
 
     if (this.verbose) {
@@ -156,7 +162,10 @@ class ServerlessPlugin {
       zipOperation.stderr.on("data", buf => this.serverless.cli.log(buf.toString()));
     }
 
-    zipOperation.on("close", () => this.deployFunction(functionName, zipFileName));
+    zipOperation.on("close", () => {
+      this.deployFunction(functionName, zipFileName);
+      spinner.succeed(`Function ${functionName} packed!`);
+    });
   }
 
   runMiddleware() {
@@ -167,8 +176,13 @@ class ServerlessPlugin {
       this.serverless.service.custom.develop.middleware instanceof Array
     ) {
       this.serverless.service.custom.develop.middleware.forEach(cmd => {
-        this.serverless.cli.log(`Running ${cmd}...`);
-        this.serverless.cli.log(execSync(cmd));
+        const spinner = ora(`Running ${cmd}...`).start();
+        const execSyncResult = execSync(cmd);
+        spinner.succeed(`${cmd} finished!`);
+
+        if (this.verbose) {
+          this.serverless.cli.log(execSyncResult);
+        }
       });
     }
   }

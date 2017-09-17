@@ -2,7 +2,7 @@ const waitPromise = () =>
   new Promise(resolve => {
     setTimeout(() => {
       return resolve();
-    }, 1000);
+    }, 1001);
   });
 
 async function wait() {

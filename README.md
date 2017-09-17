@@ -34,11 +34,11 @@ plugins:
 custom:
   develop:
     middleware:
-      - npm run build   # Runs `npm run build` before packaging
-    buildPath: build    # Packages files from `build` directory
-    sourcePath: src     # Points to source files directory
-    changeInterval: 0.2 # Specifies max amount of seconds between deployments
-    verbose: true       # Adds much more information what happens under the hood
+      - npm run build    # Runs `npm run build` before packaging
+    buildPath: build     # Packages files from `build` directory
+    sourcePath: src      # Points to source files directory
+    changeInterval: 0.2  # Specifies max amount of seconds between deployments
+    verbose: true        # Adds much more information what happens under the hood
 ```
 
 ## How does it work?
