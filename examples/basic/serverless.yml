@@ -1,0 +1,18 @@
+service: serverless-develop-basic-demo
+
+plugins:
+  - ../../index # serverless-develop
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+
+functions:
+  hello:
+    handler: withDependency.hello
+    events:
+        - http: GET /with
+  handler2:
+    handler: withoutDependency.hello
+    events:
+        - http: GET /without
