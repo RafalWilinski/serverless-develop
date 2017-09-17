@@ -1,5 +1,7 @@
 # Serverless Develop Plugin
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
+[![npm version](https://badge.fury.io/js/serverless-develop.svg)](https://badge.fury.io/js/serverless-develop)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
 Deploy your functions to AWS Lambda as you code and get realtime feedback.
 
@@ -42,14 +44,30 @@ custom:
 ```
 
 ## How does it work?
-First, plugin builds individual artifacts, one for each function. Then, once a change is applied, plugin checks which functions are affected. Then it patches archives located in `.serverless` directory and re-deploys them to AWS Lambda without updating CloudFormation or performing checks.
+
+1. Plugin builds individual artifacts, one for each function
+2. After that, plugin watches files for changes
+3. Once change is made, function checks affected functions, runs middleware (if any) and adds change to function's archive in `.serverless` directory
+4. Deploy using raw AWS-SDK call without performing checks or updating CloudFormation
 
 ## Examples:
 - [Basic](https://github.com/RafalWilinski/serverless-develop/tree/master/examples/basic)
 - [With Babel build pipeline](https://github.com/RafalWilinski/serverless-develop/tree/master/examples/babel)
 
+
+## Integration with `serverless-webpack`
+
+To be added...
+
+
 ## Credits and inspiration
 
 Heavily inspired by [@keithwhor's](https://github.com/keithwhor) [article](https://medium.com/@keithwhor/rise-of-functions-as-a-service-how-php-set-the-serverless-stage-20-years-ago-ccb560c5f422) and [@mthenw thoughts](https://github.com/mthenw).
 
+## Contributing
 
+Awesome! All contributions are welcome.
+
+## License
+
+MIT
