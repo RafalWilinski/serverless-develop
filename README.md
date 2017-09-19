@@ -6,7 +6,7 @@
 Deploy your functions to AWS Lambda as you code and get realtime feedback.
 
 ## What is this?
-Right now, unpolished PoC.
+Right now, unpolished PoC, however, works.
 
 ## What problem does it solve?
 Iterating with Serverless Framework is slow.
@@ -48,6 +48,8 @@ custom:
 2. After that, plugin watches files for changes
 3. Once change is made, function checks affected functions, runs middleware (if any) and adds change to function's archive in `.serverless` directory
 4. Deploy using raw AWS-SDK call without performing checks or updating CloudFormation
+
+Note: Right now, [only JS is supported](https://github.com/RafalWilinski/serverless-develop/blob/master/index.js#L204).
 
 ## Examples:
 - [Basic](https://github.com/RafalWilinski/serverless-develop/tree/master/examples/basic)

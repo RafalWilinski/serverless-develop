@@ -7,7 +7,7 @@ const spawn = require("child_process").spawn;
 const execSync = require("child_process").execSync;
 const ora = require("ora");
 
-class ServerlessPlugin {
+class ServerlessDevelopPlugin {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.originalOptions = options;
@@ -272,4 +272,4 @@ class ServerlessPlugin {
   }
 }
 
-module.exports = ServerlessPlugin;
+module.exports = ServerlessDevelopPlugin;
