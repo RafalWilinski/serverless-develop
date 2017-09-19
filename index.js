@@ -23,7 +23,7 @@ class ServerlessPlugin {
       this.buildPath = this.serverless.service.custom.develop.buildPath;
       this.sourcePath = this.serverless.service.custom.develop.sourcePath;
       this.changeInterval = this.serverless.service.custom.develop.changeInterval || 0.1;
-      this.verbose = this.serverless.service.custom.develop.verbose;
+      this.verbose = process.env.SLS_DEBUG;
 
       if (this.verbose) {
         this.serverless.cli.log("------------------------");

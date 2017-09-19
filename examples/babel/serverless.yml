@@ -10,7 +10,6 @@ custom:
       - npm run build
     buildPath: build
     sourcePath: src
-    verbose: false
 
 plugins:
   - /Users/Rafal/Node/serverless-develop/index # Change to your absolute dir :P

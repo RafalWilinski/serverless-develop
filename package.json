@@ -1,6 +1,6 @@
 {
   "name": "serverless-develop",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Deploy your functions to AWS Lambda as you code.",
   "main": "index.js",
   "author": "Rafal Wilinski <raf.wilinski@gmail.com>",
